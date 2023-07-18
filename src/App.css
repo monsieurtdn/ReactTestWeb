@@ -1,0 +1,98 @@
+:root{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+   height: 100%;
+   box-sizing: border-box;
+}
+
+.option{
+  display: flex;
+}
+
+
+.header {
+  display: flex;
+  background-color:rgba(200, 225, 255, 0.9);
+  width: 100%;
+  height: 100%;
+  align-items: center;
+ overflow: hidden;
+  
+}
+
+.title {
+  font-size: 200%;
+  width: 90%;
+  text-align: left;
+  
+}
+#head{
+  background-color:rgba(200, 225, 255, 0.9);
+}
+
+.body {
+  padding-left: 1%;
+  
+}
+.menu {
+  border: 2px solid #000;
+  image-resolution: from-image 300dpi;
+  width: 20%;
+  
+}
+
+.optionPhoto {
+  width: 30px;
+  margin-right: 1px;
+}
+.note {
+  text-align: right;
+}
+.product {
+  display: flex;
+  align-items:center;
+  border-top: 1px solid #000;
+}
+.price {
+  display: inline;
+  text-align: right;
+  margin-right: 50px;
+}
+.priceNum {
+  text-align: right;
+  font-weight: normal;
+  min-width: 200px;
+}
+.calculate {
+  border-top: 1px solid #000;
+  text-align: right;
+  font-size: 150%;
+  display: flex;
+  justify-content: end;
+}
+.productContent {
+  width: 65%;
+  padding-right: 50px;
+  display: block;
+}
+.chosenOption {
+  display: flex;
+  border-top: 1px solid cyan;
+  border-bottom: 1px solid cyan;
+}
+.showlist {
+  border-bottom: 2px solid #000;
+  
+}
+.cart {
+  width: 80%;
+}
+.productDescribe {
+  margin-top: 40px;
+  margin-bottom: 55px;
+  font-size: larger;
+}
+.productTitle {
+  font-size: 120%;
+}
