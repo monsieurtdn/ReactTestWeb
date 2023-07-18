@@ -7,6 +7,8 @@ import './App.css';
 import { Col,Row } from 'react-bootstrap';
 import { useState } from 'react';
 import Cart from './Cart/Cart';
+import Shop from './Shop/Shop';
+import MyProfile from './Profile/MyProfile';
 
 
 
@@ -15,37 +17,43 @@ function App() {
 
 
   const [showShop, setShowShop] = useState<boolean>(false);
-  const handleShowShop = () => {
-    setShowShop(true)
-  }
+
   const handleCloseShop = () => {
     setShowShop(false)
   }
 
   const [showProfile, setShowProfile] = useState<boolean>(false);
-  const handleShowProfile = () => {
-    setShowShop(true)
-  }
+
   const handleCloseProfile = () => {
-    setShowShop(false)
+    setShowProfile(false)
   }
 
   const [showCart, setShowCart] = useState<boolean>(false);
-  const handleShowCart = () => {
-    setShowShop(true)
-  }
+
   const handleCloseCart = () => {
-    setShowShop(false)
+    setShowCart(false)
   }
 
   const handleCloseAll = () => {
-    handleCloseCart;
-    handleCloseMenu;
-    handleCloseProfile;
+    handleCloseCart();
+    handleCloseShop();
+    handleCloseProfile();
   } 
 
+  const handleShowShop = () => {
+    handleCloseAll();
+    setShowShop(true);
+  }
 
+  const handleShowCart = () => {
+    handleCloseAll();
+    setShowCart(true)
+  }
 
+  const handleShowProfile = () => {
+    handleCloseAll();
+    setShowProfile(true)
+  }
   const [showMenu, setShowMenu] = useState<boolean>(false);
 
 const handleShowMenu = () => {
@@ -91,7 +99,7 @@ const handleDisplayMenu = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className='form-inline my-2 my-lg-0'>
           <img
-              src="icon.jpg"
+              src="headIcon.jpg"
               width="100"
               height="100"
               className="icon"
@@ -107,7 +115,7 @@ const handleDisplayMenu = () => {
       <Col  md={2} className='menu'  >
         <Row className='showlist' onClick={handleDisplayMenu}>&emsp;Menu</Row>
         <Row >
-          <div className='option'  >
+          <div className='option' onClick={handleShowShop} >
             <img
                   src="shop.jpg"
                   className="optionPhoto"
@@ -117,7 +125,7 @@ const handleDisplayMenu = () => {
           </div>
         </Row>
         <Row >
-          <div className='chosenOption' ref = "cart" onClick={() => {handleCloseAll; handleShowCart;}}>
+          <div className='chosenOption' onClick={handleShowCart}>
             <img
                   src="chosen cart.jpg"
                   className="optionPhoto"
@@ -127,7 +135,7 @@ const handleDisplayMenu = () => {
           </div>
         </Row>
         <Row >
-          <div className='option'>
+          <div className='option' onClick={handleShowProfile}>
             <img
                   src="profile.jpg"
                   className="optionPhoto"
@@ -140,7 +148,8 @@ const handleDisplayMenu = () => {
       
 
     {showCart && <Cart/>}
-
+    {showProfile && <MyProfile/>}
+    {showShop && <Shop/>}
 
       
     </Row>

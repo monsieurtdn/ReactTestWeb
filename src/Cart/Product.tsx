@@ -1,4 +1,4 @@
-import './App.css';
+import './Cart.css';
 
 interface productProps {
     title: string;
@@ -7,24 +7,24 @@ interface productProps {
     image: string;
 }
 
-const Product: React.FC<productProps> = ({ title, description, price }) => {
-    return(
+const Product: React.FC<productProps> = ({ title, description, price, image }) => {
+    return (
         <><div className='product'>
-        <img
-            src= '${image}'
-            className="productPhoto"
-            alt="product"
-        />
-        <div className="productContent">
-            <b className='productTitle'>{title}</b>
-            <p className='productDescribe'>{description}
-            </p>
-            <h4 className="productProfile"> {price} VND</h4>
-        </div>
-        <b>
-            &emsp;  + &emsp;  1 &emsp;  - &emsp;
-        </b>
-    </div></>
+            <img
+                src={image}
+                className="productPhoto"
+                alt="product"
+            />
+            <div className="productContent">
+                <b className='productTitle'>{title}</b>
+                <p className='productDescribe'>{description}
+                </p>
+                <h4 className="productProfile"> {price} VND</h4>
+            </div>
+            <b>
+                &emsp;  + &emsp;  1 &emsp;  - &emsp;
+            </b>
+        </div></>
     )
 }
 export default Product;
