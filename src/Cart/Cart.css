@@ -44,6 +44,14 @@
 
 .productContent {
     width: 65%;
+    padding-left: 50px;
     padding-right: 50px;
     display: block;
+}
+.heading {
+    position: sticky;
+    background-color: '#fff';
+    z-index: 1;
+    top: '100px';
+    left: '200px';
 }

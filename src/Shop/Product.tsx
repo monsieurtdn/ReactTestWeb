@@ -1,4 +1,7 @@
 import "./Shop.css";
+import { useState } from "react";
+import BuyProduct from "./BuyProduct";
+
 
 interface productProps {
     title: string;
@@ -7,26 +10,39 @@ interface productProps {
     image: string;
     color: string;
     rating: number;
+    onClick?: (event: MouseEvent) => void
 }
 
 
 
 
-const Product: React.FC<productProps> = ({ title, description, price, image, color, rating }) => {
+const Product: React.FC<productProps> = ({ onClick, title, description, price, image, color, rating }) => {
+
+    const [showBuyProduct, setBuyProduct] = useState<boolean>(false);
+
+    const handleShowBuyProduct = () => {
+        setBuyProduct(true);
+        console.log(1)
+    }
+    
+    const handleCloseBuyProduct = () => {
+        setBuyProduct(false)
+    }
+
 
     const StarRender = () => {
-        // Tạo một mảng chứa thông tin về 5 hình ảnh
+       
         const stars = [];
         for (let i = 0; i < rating; i++) {
             stars.push({
-                src: 'star.img',
+                src: 'stars.svg',
                 alt: 'Hình ảnh star',
-                key: i, // Cần phải có một key duy nhất cho mỗi thẻ trong React
+                key: i, 
             });
         }
         return (
-            <div>
-                {/* Sử dụng map để render các thẻ <img> từ mảng images */}
+            <div className="Product">
+            
                 {stars.map((star) => (
                     <img key={star.key} src={star.src} alt={star.alt} />
                 ))}
@@ -36,7 +52,7 @@ const Product: React.FC<productProps> = ({ title, description, price, image, col
 
 
     return (
-        <div className="Product">
+        <div className="Product" onClick={handleShowBuyProduct}>
             <img
                 src={image}
                 className="productPhoto"
@@ -44,10 +60,13 @@ const Product: React.FC<productProps> = ({ title, description, price, image, col
             />
             <div className="productContent">
                 <b className='productTitle'>{title}</b>
-                <h4 className="productProfile"> {price} VND</h4>
+                <h4 className="productPrice"> {price} VND</h4>
                 <StarRender />
             </div>
+            {showBuyProduct && <BuyProduct title={title} description={description} price={price} image={image} color={color} rating={rating}/>}
         </div>
+       
     )
 }
+
 export default Product;

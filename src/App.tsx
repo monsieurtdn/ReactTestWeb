@@ -1,20 +1,67 @@
 import React, { useEffect } from 'react';
-import logo from './logo.svg';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import './App.css';
-import { Col,Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import { useState } from 'react';
 import Cart from './Cart/Cart';
 import Shop from './Shop/Shop';
 import MyProfile from './Profile/MyProfile';
-
+import {MenuOutlined} from '@ant-design/icons';
+import { Layout, Space } from 'antd';
+import { Button, Menu } from 'antd';
 
 
 
 function App() {
 
+  const headerStyle: React.CSSProperties = {
+    position: 'sticky',
+    alignItems: 'center',
+    color: '#000',
+    width: '100%',
+    height: '100%',
+    top: 0,
+    zIndex: 1,
+    paddingInline: 50,
+    lineHeight: '64px',
+    backgroundColor: 'rgba(200, 225, 255, 0.9)',
+    display: 'flex',  
+    overflow: 'hidden',
+    
+  };
+
+
+
+  const siderStyle: React.CSSProperties = {
+    textAlign: 'center',
+    lineHeight: '120px',
+    color: '#000',
+    position: 'fixed',
+    backgroundColor: '#fff',
+    overflow: 'auto',
+    height: '100vh',
+    left: 0,
+    top: 100,
+    bottom: 0,
+  };
+
+  const footerStyle: React.CSSProperties = {
+    textAlign: 'center',
+    color: '	#FFFFFF',
+    backgroundColor: '#fff',
+  };
+
+
+
+  const { Header, Footer, Sider, Content } = Layout;
+
+
+  const [collapsed, setCollapsed] = useState(false);
+
+  const toggleCollapsed = () => {
+    setCollapsed(!collapsed);
+    console.log(1)
+  };
 
   const [showShop, setShowShop] = useState<boolean>(false);
 
@@ -38,7 +85,8 @@ function App() {
     handleCloseCart();
     handleCloseShop();
     handleCloseProfile();
-  } 
+
+  }
 
   const handleShowShop = () => {
     handleCloseAll();
@@ -54,106 +102,129 @@ function App() {
     handleCloseAll();
     setShowProfile(true)
   }
-  const [showMenu, setShowMenu] = useState<boolean>(false);
 
-const handleShowMenu = () => {
-  setShowMenu(true);
-
-
-};
-
-const handleCloseMenu = () => {
-  setShowMenu(false);
-
-
-};
-
-const handleDisplayMenu = () => {
-  if (!showMenu) {
-    handleShowMenu();
-  } else {
-    handleCloseMenu();
+  function ShopIcon() {
+    return (
+      <img
+        src="Shop.svg"
+        width="30"
+        height="30"
+        className="optionPhoto"
+        alt="Brand logo"
+      />
+    )
   }
-};
+  function CartIcon() {
+    return (
+      <img
+        src="cart.svg"
+        width="30"
+        height="30"
+        className="optionPhoto"
+        alt="Brand logo"
+      />
+    )
+  }
+  function ProfileIcon() {
+    return (
+      <img
+        src="profile.svg"
+        width="30"
+        height="30"
+        className="optionPhoto"
+        alt="Brand logo"
+      />
+    )
+  }
 
- return (
+
+
+
+
+  return (
     <div className="App">
-      <Navbar className="bg-body-tertiary" id='head' expand="lg">
-        
-        <div className='header' >
-          
-            <Navbar.Brand className='header' >
-              <img
-              src="logo.jpg"
+
+
+      <Layout>
+
+        <Header style={headerStyle}>
+
+          <Navbar.Brand className='header' >
+
+            <img
+              src="Logo.svg"
               width="100"
               height="100"
               className="logo"
               alt="Brand logo"
-              />{' '}
-              <p className='title'>Mobile Shopping</p>
+              onClick={handleCloseAll}
+            />{' '}
+            <p className='title'>Mobile Shopping</p>
 
-
-            </Navbar.Brand>
-
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className='form-inline my-2 my-lg-0'>
-          <img
-              src="headIcon.jpg"
-              width="100"
-              height="100"
-              className="icon"
-              alt="Brand logo"
+            <img
+                src="icon.svg"
+                width="100"
+                height="100"
+                className="icon"
+                alt="Brand logo"
+                onClick={handleShowProfile}
               />
-          </Nav>
-        </Navbar.Collapse>
-        </div>
-      </Navbar>
+
+          </Navbar.Brand>
+
+
+
+        </Header>
+
+        <Layout hasSider style={{backgroundColor: '#fff', width: '100%'}}>
+
+          <Sider style={siderStyle}>
+            <div>
+          <Button onClick={toggleCollapsed} style={{ marginBottom: 16 }}>
+        {collapsed}Menu <MenuOutlined />
+      </Button>
       
-    <Row className='body'>
-    
-      <Col  md={2} className='menu'  >
-        <Row className='showlist' onClick={handleDisplayMenu}>&emsp;Menu</Row>
-        <Row >
-          <div className='option' onClick={handleShowShop} >
-            <img
-                  src="shop.jpg"
-                  className="optionPhoto"
-                  alt="shop"
-                  />
-              {showMenu && <div> <p>Shop</p></div>}
-          </div>
-        </Row>
-        <Row >
-          <div className='chosenOption' onClick={handleShowCart}>
-            <img
-                  src="chosen cart.jpg"
-                  className="optionPhoto"
-                  alt="cart"
-                  />
-             {showMenu && <div> <p>Cart</p></div>}
-          </div>
-        </Row>
-        <Row >
-          <div className='option' onClick={handleShowProfile}>
-            <img
-                  src="profile.jpg"
-                  className="optionPhoto"
-                  alt="profile"
-                  />
-             {showMenu && <div> <p>Profile</p></div>}
-          </div>
-        </Row>
+            <Menu
+              mode="inline"
+              theme="light"
+              inlineCollapsed={collapsed}>
+              <Menu.Item key={1} icon={<ShopIcon />} onClick={handleShowShop}>Shop</Menu.Item>
+              <Menu.Item key={2} icon={<CartIcon />} onClick={handleShowCart}>Cart</Menu.Item>
+              <Menu.Item key={3} icon={<ProfileIcon />} onClick={handleShowProfile}>Profile</Menu.Item>
+            </Menu>
+            </div>
+          </Sider>
+
+          <Content style={{ margin: '0px 200px 0', overflow: 'initial', backgroundColor: '#fff', minWidth: '1200px' }}>              
+            {showCart && <Cart />}
+            {showProfile && <MyProfile />}
+            {showShop && <Shop />}
+
+            </Content>
+            
+            
+        </Layout>
+
+        <Footer style={footerStyle}>Footer</Footer>
+
+      </Layout>
+
+
+
+
+
+      <Row className='body'>
+
+        <Col md={2} className='menu'  >
+
         </Col>
-      
 
-    {showCart && <Cart/>}
-    {showProfile && <MyProfile/>}
-    {showShop && <Shop/>}
 
-      
-    </Row>
-    
+
+
+
+      </Row>
+
     </div>
   );
 }

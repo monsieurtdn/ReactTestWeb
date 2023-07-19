@@ -1,0 +1,38 @@
+.mainInfo {
+    display: flex;
+    padding: 35px;
+}
+.profileIcon {
+    padding-right: 40px;
+}
+.name {
+    padding-top: 40px;
+    display: block;
+    font-weight: bold;
+}
+.email {
+    display: block;
+    font-size: 125%;
+}
+.date {
+    padding-left: 50px;
+    display: inline-block;
+    min-width: 205px;
+    padding-bottom: 20px;
+}
+.sex {
+    padding-left: 50px;
+    display: inline-block;
+    min-width: 205px;
+    padding-bottom: 20px;
+}
+.address {
+    padding-left: 50px;
+    display: inline-block;
+    min-width: 200px;
+    padding-bottom: 20px;
+}
+.text {
+    display: inline;
+    width: fit-content;
+}
