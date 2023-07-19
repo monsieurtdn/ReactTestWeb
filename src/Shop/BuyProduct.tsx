@@ -8,7 +8,7 @@ import { useState } from "react";
 interface productProps {
     title: string;
     description: string;
-    price: number;
+    price: string;
     image: string;
     color: string;
     rating: number;

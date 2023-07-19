@@ -6,7 +6,7 @@ import BuyProduct from "./BuyProduct";
 interface productProps {
     title: string;
     description: string;
-    price: number;
+    price: string;
     image: string;
     color: string;
     rating: number;
@@ -41,7 +41,7 @@ const Product: React.FC<productProps> = ({ onClick, title, description, price, i
             });
         }
         return (
-            <div className="Product">
+            <div className="Rating">
             
                 {stars.map((star) => (
                     <img key={star.key} src={star.src} alt={star.alt} />

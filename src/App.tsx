@@ -6,13 +6,22 @@ import { useState } from 'react';
 import Cart from './Cart/Cart';
 import Shop from './Shop/Shop';
 import MyProfile from './Profile/MyProfile';
-import {MenuOutlined} from '@ant-design/icons';
+import { MenuOutlined } from '@ant-design/icons';
 import { Layout, Space } from 'antd';
 import { Button, Menu } from 'antd';
 
 
 
 function App() {
+  const [isChosen, setIsChosen] = useState(true);
+  const [menuLists, setMenuLists] = useState(["Shop","Cart","Profile"])
+  const menuListsHide = () =>{setMenuLists(["","",""])}
+  const menuListsFull = () => {setMenuLists(["Shop","Cart","Profile"])}
+
+  const handleMenuList = () => {
+    if(isChosen === false) {setIsChosen(true); menuListsFull();  console.log(isChosen) }
+    else if(isChosen === true) { setIsChosen(false); menuListsHide(); console.log(isChosen) }
+  }
 
   const headerStyle: React.CSSProperties = {
     position: 'sticky',
@@ -25,16 +34,16 @@ function App() {
     paddingInline: 50,
     lineHeight: '64px',
     backgroundColor: 'rgba(200, 225, 255, 0.9)',
-    display: 'flex',  
+    display: 'flex',
     overflow: 'hidden',
-    
+
   };
 
 
 
   const siderStyle: React.CSSProperties = {
     textAlign: 'center',
-    lineHeight: '120px',
+    //lineHeight: '120px',
     color: '#000',
     position: 'fixed',
     backgroundColor: '#fff',
@@ -43,6 +52,7 @@ function App() {
     left: 0,
     top: 100,
     bottom: 0,
+    border: '1px solid #000'
   };
 
   const footerStyle: React.CSSProperties = {
@@ -55,13 +65,6 @@ function App() {
 
   const { Header, Footer, Sider, Content } = Layout;
 
-
-  const [collapsed, setCollapsed] = useState(false);
-
-  const toggleCollapsed = () => {
-    setCollapsed(!collapsed);
-    console.log(1)
-  };
 
   const [showShop, setShowShop] = useState<boolean>(false);
 
@@ -162,13 +165,13 @@ function App() {
             <p className='title'>Mobile Shopping</p>
 
             <img
-                src="icon.svg"
-                width="100"
-                height="100"
-                className="icon"
-                alt="Brand logo"
-                onClick={handleShowProfile}
-              />
+              src="icon.svg"
+              width="100"
+              height="100"
+              className="icon"
+              alt="Brand logo"
+              onClick={handleShowProfile}
+            />
 
           </Navbar.Brand>
 
@@ -176,36 +179,37 @@ function App() {
 
         </Header>
 
-        <Layout hasSider style={{backgroundColor: '#fff', width: '100%'}}>
+        <Layout hasSider style={{ backgroundColor: '#fff', width: '100%' }}>
 
           <Sider style={siderStyle}>
-            <div>
-          <Button onClick={toggleCollapsed} style={{ marginBottom: 16 }}>
-        {collapsed}Menu <MenuOutlined />
-      </Button>
-      
-            <Menu
-              mode="inline"
-              theme="light"
-              inlineCollapsed={collapsed}>
-              <Menu.Item key={1} icon={<ShopIcon />} onClick={handleShowShop}>Shop</Menu.Item>
-              <Menu.Item key={2} icon={<CartIcon />} onClick={handleShowCart}>Cart</Menu.Item>
-              <Menu.Item key={3} icon={<ProfileIcon />} onClick={handleShowProfile}>Profile</Menu.Item>
-            </Menu>
+            <div style={{ width: 256 }}>
+              <Menu>
+              <Menu.Item  onClick={handleMenuList} style={{ textAlign: 'left'}}>
+                Menu<MenuOutlined style={{ marginLeft: '100px'}}/>
+              </Menu.Item>
+              </Menu>
+              <Menu
+                mode="inline"
+                theme="light"
+              >
+                <Menu.Item key={1} icon={<ShopIcon />} onClick={handleShowShop}>{menuLists[0]}</Menu.Item>
+                <Menu.Item key={2} icon={<CartIcon />} onClick={handleShowCart}>{menuLists[1]}</Menu.Item>
+                <Menu.Item key={3} icon={<ProfileIcon />} onClick={handleShowProfile}>{menuLists[2]}</Menu.Item>
+              </Menu>
             </div>
           </Sider>
 
-          <Content style={{ margin: '0px 200px 0', overflow: 'initial', backgroundColor: '#fff', minWidth: '1200px' }}>              
+          <Content style={{ margin: '0px 200px 0', overflow: 'initial', backgroundColor: '#fff', minWidth: '1200px' }}>
             {showCart && <Cart />}
             {showProfile && <MyProfile />}
             {showShop && <Shop />}
 
-            </Content>
-            
-            
+          </Content>
+
+
         </Layout>
 
-        <Footer style={footerStyle}>Footer</Footer>
+ 
 
       </Layout>
 
@@ -213,17 +217,6 @@ function App() {
 
 
 
-      <Row className='body'>
-
-        <Col md={2} className='menu'  >
-
-        </Col>
-
-
-
-
-
-      </Row>
 
     </div>
   );
