@@ -71,7 +71,7 @@ function App() {
   const handleCloseShop = () => {
     setShowShop(false)
   }
-
+  
   const [showProfile, setShowProfile] = useState<boolean>(false);
 
   const handleCloseProfile = () => {
