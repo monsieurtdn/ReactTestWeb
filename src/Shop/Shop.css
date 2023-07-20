@@ -31,3 +31,7 @@
     font-weight: bold;
     font-size: xx-large;
 }
+.buyContent {
+    position: relative;
+    left: -100px
+}

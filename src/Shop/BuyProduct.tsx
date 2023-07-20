@@ -4,8 +4,7 @@ import { Button } from "react-bootstrap";
 import Shop from "./Shop";
 import React from "react";
 import { useState } from "react";
-import Search from "antd/es/input/Search";
-import { FilterFilled } from "@ant-design/icons"
+import { ShoppingCartOutlined } from "@ant-design/icons";
 
 
 
@@ -44,44 +43,61 @@ const BuyProduct: React.FC<any> = ({ product }) => {
     }
     return (
         <>
-                            <div style={{ position: 'sticky', backgroundColor: '#fff', zIndex: '1', top: '100px', left: '200px', borderBottom: '1px solid #000' }}>
-                    <h4 style={{ paddingBottom: '10px', paddingLeft: '15px' }}>Shop</h4>
+            <div style={{ position: 'sticky', backgroundColor: '#fff', zIndex: '1', top: '100px', left: '200px', borderBottom: '1px solid #000' }}>
+                <h4 style={{ paddingLeft: '15px' }}>Shop</h4>
 
 
-                    <div style={{ justifyContent: 'flex-end', display: 'inline-flex', paddingLeft: '15px', paddingBottom: '15px' }}>
-                        <div>Shop / Product</div>
-                        <div style={{ right: '100px', position: 'absolute' }}>
-                            <Search placeholder=" " style={{ width: 200 }} />
-
-                            <FilterFilled style={{ fontSize: '150%' }} />
-                        </div>
+                <div style={{ justifyContent: 'flex-end', display: 'inline-flex', paddingLeft: '15px' }}>
+                    <div>Shop / Product</div>
+                    <div style={{ right: '100px', position: 'absolute' }}>
+                        <ShoppingCartOutlined style={{
+                            fontSize: '150%', position: 'relative',
+                            left: '-150px',
+                            top: '-5px'
+                        }} />
                     </div>
-
                 </div>
-            <div className="Product">
-                <>
 
+            </div>
+            <div className="Product">
+                <div style={{
+                    paddingLeft: "75px"
+                }}>
                     <img
                         src={product.image}
-                        className="productPhoto"
+                        height="400"
+                        width="400"
                         alt="product"
                     />
+                </div><div style={{
+                    position: "relative",
+                    top: "250px",
+                    left: "-275px"
+                }}>
                     <img
                         src={product.color}
-                        className="productColor"
+                        height="150"
+                        width="150"
                         alt="product"
                     />
-                </>
-                <div className="productContent">
-                    <b className='productTitle'>{product.title}</b>
-                    <b className='productDescribe'>{product.description}</b>
+                </div>
+
+
+                <div className="buyContent">
+                    <b style={{fontSize: '20px'}}>{product.title}</b>
+                    <div style={{fontSize: '20px', fontWeight: 'normal'}}>{product.description}</div>
                     <h4 className="productPrice"> {product.price} VND</h4>
                     <StarRender />
                     <>
-                        <Button variant="primary" size="lg"> Mua ngay</Button>
-                        <Button variant="success" size="lg"> Thêm vào giỏ hàng</Button>
+                        <Button variant="primary" style={{fontSize: '200%', marginRight:'30px'}}> Mua ngay</Button>
+                        <Button variant="success" style={{fontSize: '200%'}}> Thêm vào giỏ hàng</Button>
                     </>
+
+
                 </div>
+
+
+
             </div>
         </>
     )

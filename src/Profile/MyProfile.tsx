@@ -68,7 +68,7 @@ const MyProfile: React.FC = () => {
   return (
     <Col className="profile">
                       <div style={{position: 'sticky',backgroundColor: '#fff', zIndex: '1', top: '100px', left: '200px', borderBottom: '1px, #fff'}}>
-                <h4 style={{paddingBottom: '10px'}}>My Profile</h4>
+                <h4 style={{padding: '10px'}}>My Profile</h4>
                 </div>
       <div className="mainInfo">
         <img

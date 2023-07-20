@@ -6,6 +6,7 @@
     margin-top: 40px;
     margin-bottom: 55px;
     font-size: larger;
+    width: 80%;
 }
 
 .productTitle {
@@ -40,7 +41,7 @@
     display: flex;
     align-items: center;
     border-top: 1px solid #000;
-    
+    padding-left: 50px
 }
 
 .productContent {
@@ -55,4 +56,7 @@
     z-index: 1;
     top: '100px';
     left: '200px';
+}
+.productPhoto {
+    height: 200px
 }
