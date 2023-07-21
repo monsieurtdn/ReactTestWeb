@@ -10,7 +10,7 @@ import { FilterFilled } from "@ant-design/icons"
 import { useState } from "react";
 let products = [
     {
-        price: '6 940 000',
+        price: 6940000,
         title: 'Điện thoại Samsung Galaxy A31',
         description: 'Galaxy A31 là mẫu smartphone tầm trung mới ra mắt đầu năm 2020 của Samsung. Thiết bị gây ấn tượng mạnh với ngoại hình thời trang, cụm 4 camera đa chức năng, vân tay dưới màn hình và viên pin khủng lên đến 5000 mAh.',
         image: 'product.svg',
@@ -20,11 +20,13 @@ let products = [
 ]
 
 
+
+
 interface product {
 
     title: string;
     description: string;
-    price: string;
+    price: number;
     image: string;
     color: string;
     rating: number;
@@ -35,6 +37,8 @@ interface product {
 
 
 const Shop: React.FC = () => {
+    
+
 
     const items: MenuProps['items'] = [
         {

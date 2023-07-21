@@ -99,9 +99,9 @@ const MyProfile: React.FC = () => {
           </Button>
         </Dropdown>
         <br/>
-        <div className="address">Address Company:</div> <Input className="text" value={profile.addressCompany}/>
+        <div className="address">Address Company:</div> <Input className="text" defaultValue={profile.addressCompany}/>
         <br/>
-        <div className="address">Address Home:</div> <Input className="text" value={profile.addressHome}/>
+        <div className="address">Address Home:</div> <Input className="text" defaultValue={profile.addressHome}/>
       </div>
     </Col>
   )

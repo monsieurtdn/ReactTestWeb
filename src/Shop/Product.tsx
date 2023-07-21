@@ -6,7 +6,7 @@ import BuyProduct from "./BuyProduct";
 interface product {
     title: string;
     description: string;
-    price: string;
+    price: number;
     image: string;
     color: string;
     rating: number;
@@ -18,7 +18,24 @@ interface productProps {
     onClick: (product: product) => void
 }
 
+function addSpaceToNumber(n: number) {
+ 
+    const numberString = String(n);
+    
 
+    let formattedString = '';
+    
+
+    for (let i = 0; i < numberString.length; i++) {
+
+      if (i > 0 && (numberString.length - i) % 3 === 0) {
+        formattedString += ' ';
+      }
+      formattedString += numberString[i];
+    }
+    
+    return formattedString;
+  }
 
 
 const Product: React.FC<productProps> = ({ onClick, product }) => {
@@ -64,7 +81,7 @@ const Product: React.FC<productProps> = ({ onClick, product }) => {
             />
             <div className="productContent">
                 <b className='productTitle'>{product.title}</b>
-                <h4 className="productPrice"> {product.price} VND</h4>
+                <h4 className="productPrice"> {addSpaceToNumber(product.price)} VND</h4>
                 <StarRender />
             </div>
             {/* {showBuyProduct && <BuyProduct title={title} description={description} price={price} image={image} color={color} rating={rating}/>} */}

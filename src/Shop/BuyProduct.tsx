@@ -12,13 +12,30 @@ interface product {
 
     title: string;
     description: string;
-    price: string;
+    price: number;
     image: string;
     color: string;
     rating: number;
 
 }
+function addSpaceToNumber(n: number) {
+ 
+    const numberString = String(n);
+    
 
+    let formattedString = '';
+    
+
+    for (let i = 0; i < numberString.length; i++) {
+
+      if (i > 0 && (numberString.length - i) % 3 === 0) {
+        formattedString += ' ';
+      }
+      formattedString += numberString[i];
+    }
+    
+    return formattedString;
+  }
 
 
 const BuyProduct: React.FC<any> = ({ product }) => {
@@ -33,7 +50,7 @@ const BuyProduct: React.FC<any> = ({ product }) => {
             });
         }
         return (
-            <div className="Product">
+            <div className="Product" style={{marginLeft:'-60px'}}>
 
                 {stars.map((star) => (
                     <img key={star.key} src={star.src} alt={star.alt} />
@@ -86,10 +103,10 @@ const BuyProduct: React.FC<any> = ({ product }) => {
                 <div className="buyContent">
                     <b style={{fontSize: '20px'}}>{product.title}</b>
                     <div style={{fontSize: '20px', fontWeight: 'normal'}}>{product.description}</div>
-                    <h4 className="productPrice"> {product.price} VND</h4>
-                    <StarRender />
+                    <h4 className="productPrice"> {addSpaceToNumber(product.price)} VND</h4>
+                    <StarRender  />
                     <>
-                        <Button variant="primary" style={{fontSize: '200%', marginRight:'30px'}}> Mua ngay</Button>
+                        <Button variant="primary" style={{fontSize: '200%', marginRight:'25px'}}> Mua ngay</Button>
                         <Button variant="success" style={{fontSize: '200%'}}> Thêm vào giỏ hàng</Button>
                     </>
 
